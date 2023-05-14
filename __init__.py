@@ -12,12 +12,27 @@ bl_info = {
 
 import bpy
 from .ui import panel
+from .operators import example
 
 classes = (
     panel.HelloWorld,
+    example.SimpleOperator,
 )
 
-register, unregister = bpy.utils.register_classes_factory(classes)
+# register, unregister = bpy.utils.register_classes_factory(classes)
+
+def register():
+    for cls in classes:
+        bpy.utils.register_class(cls)
+    bpy.types.VIEW3D_MT_object.append(example.menu_func)
+
+def unregister():
+    for cls in classes:
+        bpy.utils.unregister_class(cls)
+
+    bpy.types.VIEW3D_MT_object.remove(example.menu_func)
 
 if __name__ == "__main__":
     register()
+
+    # bpy.ops.object.simple_operator()

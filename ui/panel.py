@@ -32,4 +32,15 @@ class HelloWorld(Panel):
 
         layout.label(text='Hello, Panel')
 
+        col = layout.column(align=True)
+        # 路径对应的操作
+        col.operator('object.simple_operator', text = 'Simple Operator')
+
         layout.separator()
+
+class ImageEditorTool(Panel):
+    bl_space_type = 'IMAGE_EDITOR'
+    bl_region_type = 'UI'
+    bl_category = 'Tool'
+    bl_idname = 'hello_world'
+    bl_label = 'HelloWorld'
